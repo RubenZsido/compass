@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import './App.css';
 
-const API_KEY = "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";
+const API_KEY = "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";
 // "Explain things like you would to a 10 year old learning how to code."
 const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
-  "role": "system", "content": "Explain things like you would to a 10 year old learning how to code."
+  "role": "system", "content": "Your answers should only be 2-3 sentences and the third should be a call to action. And lots of jokes. Be creative and unexpected. Be very random."
 }
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
       sender: "user"
     };
 
-    const newMessages = [...messages, newMessage];
+    const newMessages = [ newMessage];
     
     setMessages(newMessages);
 
@@ -86,17 +86,19 @@ function App() {
   }
   return (
     <div className="App">
-      <input onChange={(e)=>{setCompanyName(e.target.value)}} type="text"/>
-      <input onChange={(e)=>{setCompanyDescription(e.target.value)}} type="text"/>
-      <input onChange={(e)=>{setPreferences(e.target.value)}} type="text"/>
+      <h1>Provide Website Information</h1>
+      <input onChange={(e)=>{setCompanyName(e.target.value)}} value={companyName} type="text"/>
+      <input onChange={(e)=>{setCompanyDescription(e.target.value)}} value={companyDescription} type="text"/>
+      <input onChange={(e)=>{setPreferences(e.target.value)}} value={preferences} type="text"/>
       <button onClick={() => {
-        const message = "Create a website copy. Company Name: " + companyName + " Company Description: " + companyDescription + "Preferences for the style of the copy: " + preferences
+        const message = "Your answer should only be 2 sentences with a call to action. Create a website copy. Company Name: " + 
+        companyName + " Company Description: " + 
+        companyDescription + "Preferences for the style of the copy: " + 
+        preferences
         handleSend(message)
       }}>Send</button>
-      <ul>{messages.map((message) => <li className='message'>{message.message}</li>)}</ul>
-      
+      <ul>{messages.map((message) => <li className='message'>{message.message}</li>)}</ul>     
     </div>
   );
 }
-
 export default App;
