@@ -1,30 +1,45 @@
 import React, { useState } from "react";
 import "./ImagePage.css";
-import { Configuration, OpenAIApi } from "openai";
 import { PropagateLoader } from "react-spinners";
 function ImagePage() {
-  console.log(process.env.REACT_APP_Open_AI_Key);
-  const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_Open_AI_Key,
-  });
-  delete configuration.baseOptions.headers["User-Agent"];
-
-  const openai = new OpenAIApi(configuration);
-
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
-  const generateImage = async () => {
+  const handleGenerateImage = async () => {
     setLoading(true);
-    const res = await openai
-      .createImage({
+    await sendPropt().then((result) => {
+      //console.log(result);
+      //setResult(result.data[0].url);
+    });
+  };
+
+  const sendPropt = async () => {
+    if (!prompt) {
+      console.log("Prompt required" + prompt);
+      return;
+    }
+    console.log("Prompt: " + prompt);
+    await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + String(process.env.REACT_APP_Open_AI_Key),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         prompt: prompt,
         n: 1,
         size: "512x512",
+      }),
+    })
+      .then((data) => {
+        //console.log(data);
+        return data.json();
       })
-      .then(() => setLoading(false));
-
-    setResult(res.data.data[0].url);
+      .then((data) => {
+        console.log(data.data[0].url);
+        setResult(data.data[0].url);
+        setLoading(false);
+      });
   };
   return (
     <div className="app">
@@ -37,7 +52,7 @@ function ImagePage() {
           rows="10"
           cols="40"
         />
-        <button onClick={generateImage}>Generate an Image</button>
+        <button onClick={handleGenerateImage}>Generate an Image</button>
         {result.length > 0 && loading ? (
           <PropagateLoader
             color="#4caf50"
