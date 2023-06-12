@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ImagePage.css";
+import styles from "./image-page.module.css";
 import { PropagateLoader } from "react-spinners";
 function ImagePage() {
   const [prompt, setPrompt] = useState("");

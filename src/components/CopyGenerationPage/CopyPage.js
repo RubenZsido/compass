@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./CopyPage.css";
+import styles from "./copy-page.module.css";
+import CopyCard from "./CopyCard/CopyCard.js";
 
-const API_KEY = "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";
 // "Explain things like you would to a 10 year old learning how to code."
 const systemMessage = {
   //  Explain things like you're talking to a software professional with 5 years of experience.
@@ -21,7 +21,7 @@ function CopyPage() {
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
   const [preferences, setPreferences] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSend = async (message) => {
     const newMessage = {
@@ -36,7 +36,7 @@ function CopyPage() {
 
     // Initial system message to determine ChatGPT functionality
     // How it responds, how it talks, etc.
-    setIsTyping(true);
+    setLoading(true);
     await processMessageToChatGPT(newMessages);
   };
 
@@ -70,7 +70,7 @@ function CopyPage() {
     await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + API_KEY,
+        Authorization: "Bearer " + String(process.env.REACT_APP_Open_AI_Key),
         "Content-Type": "application/json",
       },
       body: JSON.stringify(apiRequestBody),
@@ -87,7 +87,7 @@ function CopyPage() {
             sender: "ChatGPT",
           },
         ]);
-        setIsTyping(false);
+        setLoading(false);
       });
   }
   return (
@@ -136,8 +136,9 @@ function CopyPage() {
       </button>
       <ul>
         {messages.map((message) => (
-          <li className="message">{message.message}</li>
+          <CopyCard copyText={message.message}></CopyCard>
         ))}
+        <CopyCard></CopyCard>
       </ul>
     </div>
   );
