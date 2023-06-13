@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
-import styles from "./web-page.css";
-import { generateOwn, generateTemplate1 } from "./GenerateWebPage";
+import { generateOwn } from "./GenerateWebPage";
 import { useRecoilState } from "recoil";
 import { finalCopy, finalTitle } from "../../shared/recoil";
 function WebPage() {

@@ -1,25 +1,22 @@
-import React from "react";
-import styles from "./copy-card.module.css";
-
 import { useRecoilState } from "recoil";
-import { finalCopy } from "./../../../shared/recoil";
+import { finalCopy } from "./../../../shared/recoil.js";
 
 function CopyCard({ copyText }) {
   const [copy, setCopy] = useRecoilState(finalCopy);
   return (
-    <div className={styles.card}>
-      <div className={styles.text}>
+    <div>
+      <div>
         <p>{copyText}</p>
       </div>
-      <div className={styles.buttonContainer}>
+      <div>
         <button
           onClick={() => {
             setCopy(copyText);
           }}
-          class="tooltip"
+          className="tooltip"
         >
           Set
-          <span class="tooltiptext">
+          <span className="tooltiptext">
             This will set the text as the final copy.
           </span>
         </button>

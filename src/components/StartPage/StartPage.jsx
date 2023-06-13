@@ -1,5 +1,3 @@
-import React from "react";
-import styles from "./start-page.module.css";
 import { Link } from "react-router-dom";
 
 function StartPage() {
@@ -13,7 +11,7 @@ function StartPage() {
   return (
     <div>
       <section>
-        <div className={styles.header}>
+        <div>
           <h1>Compass helps startups</h1>
           <h2>rapidly test the feasibility of an idea.</h2>
           <h4>
@@ -22,8 +20,8 @@ function StartPage() {
         </div>
 
         <h3>Services</h3>
-        <div className={styles["card-container"]}>
-          <div className={styles.card}>
+        <div>
+          <div>
             <h3>Website Generation</h3>
             <img src="https://static.thenounproject.com/png/1128833-200.png" />
             <p>
@@ -31,12 +29,12 @@ function StartPage() {
               preferences
             </p>
           </div>
-          <div className={styles.card}>
+          <div>
             <h3>Image Generation</h3>
             <img src="https://media.istockphoto.com/id/1128826884/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment.jpg?s=170667a&w=0&k=20&c=O9Y41QO7idN44o-VK5s7dBUqg-dhJZcyagMb8485BNU=" />
             <p>You can eitehr provide or generate images for the website</p>
           </div>
-          <div className={styles.card}>
+          <div>
             <h3>Ad Generation</h3>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP61olaRMegyGcd2sqK89TPnj1Blq9UkZMMZMWnxfnQEa6mX-HYkjTOU4lUlq_w4CP_m0&usqp=CAU" />
             <p>
@@ -45,7 +43,7 @@ function StartPage() {
             </p>
           </div>
         </div>
-        <div className={styles.introduction}>
+        <div>
           <img src="" />
           <p>
             We are the fastest and cheapest startup prototyping agency right
@@ -68,7 +66,7 @@ function StartPage() {
           bring your startup ideas to life!
         </p>
       </section>
-      <div className="container">
+      <div>
         <Link to="/copy">
           <button>Get Started</button>
         </Link>

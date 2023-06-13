@@ -1,6 +1,5 @@
 import { useState } from "react";
-import styles from "./copy-page.module.css";
-import CopyCard from "./CopyCard/CopyCard.js";
+import CopyCard from "./CopyCard/CopyCard.jsx";
 
 // "Explain things like you would to a 10 year old learning how to code."
 const systemMessage = {
@@ -70,7 +69,7 @@ function CopyPage() {
     await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + String(process.env.REACT_APP_Open_AI_Key),
+        Authorization: "Bearer " + String(import.meta.env.VITE_Open_AI_Key),
         "Content-Type": "application/json",
       },
       body: JSON.stringify(apiRequestBody),
@@ -135,8 +134,8 @@ function CopyPage() {
         Send
       </button>
       <ul>
-        {messages.map((message) => (
-          <CopyCard copyText={message.message}></CopyCard>
+        {messages.map((message, index) => (
+          <CopyCard key={index} copyText={message.message}></CopyCard>
         ))}
         <CopyCard></CopyCard>
       </ul>

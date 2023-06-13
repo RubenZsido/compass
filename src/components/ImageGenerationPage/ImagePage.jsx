@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import styles from "./image-page.module.css";
+import { useState } from "react";
 import { PropagateLoader } from "react-spinners";
 function ImagePage() {
   const [prompt, setPrompt] = useState("");
@@ -22,7 +21,7 @@ function ImagePage() {
     await fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + String(process.env.REACT_APP_Open_AI_Key),
+        Authorization: "Bearer " + String(import.meta.env.VITE_Open_AI_Key),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -42,7 +41,7 @@ function ImagePage() {
       });
   };
   return (
-    <div className="app">
+    <div>
       <>
         <h2>Generate an Image using Open AI API</h2>
 
@@ -60,7 +59,7 @@ function ImagePage() {
             style={{ padding: "100px" }}
           ></PropagateLoader>
         ) : result.length > 0 ? (
-          <img className="result-image" src={result} alt="result" />
+          <img src={result} alt="result" />
         ) : (
           <></>
         )}
