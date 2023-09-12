@@ -1,12 +1,12 @@
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
-import StartPage from "./components/StartPage/StartPage";
-import CopyPage from "./components/CopyGenerationPage/CopyPage";
-import ImagePage from "./components/ImageGenerationPage/ImagePage";
+import StartPage from "./pages/StartPage/StartPage";
+import CopyPage from "./pages/CopyGenerationPage/CopyPage";
+import ImagePage from "./pages/ImageGenerationPage/ImagePage";
 import { RecoilRoot } from "recoil";
-import WebPage from "./components/WebGenerationPage/WebPage";
-import AdPostPage from "./components/AdPostPage/AdPostPage";
+import WebPage from "./pages/WebGenerationPage/WebPage";
+import AdPostPage from "./pages/AdPostPage/AdPostPage";
 import Navbar from "./components/Navbar/Navbar";
 function App() {
   return (

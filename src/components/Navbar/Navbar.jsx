@@ -3,28 +3,26 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <header className="header">
-      <h1 className="logo">
-        <a href="#">Compass</a>
-      </h1>
-      <ul className="main-nav">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/copy">Copy Generator</Link>
-        </li>
-        <li>
-          <Link to="/image">Image Generator</Link>
-        </li>
-        <li>
-          <Link to="/web">Website Generator</Link>
-        </li>
-        <li>
-          <Link to="/adpost">Ad Post</Link>
-        </li>
-      </ul>
-    </header>
+    <nav className="nav">
+      <img src="/src/assets/images/image.png" className="nav-logo" alt="logo" />
+      <div className="nav-link-container">
+        <Link to="/" class="nav-link">
+          Home
+        </Link>
+        <Link to="/copy" class="nav-link">
+          Copy
+        </Link>
+        <Link to="/image" class="nav-link">
+          Image
+        </Link>
+        <Link to="/web" class="nav-link">
+          Web
+        </Link>
+        <Link to="/adpost" class="nav-link">
+          Ads
+        </Link>
+      </div>
+    </nav>
   );
 }
 
