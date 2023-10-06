@@ -21,6 +21,9 @@ function Navbar() {
         <Link to="/adpost" class="nav-link">
           Ads
         </Link>
+        <Link to="/quickGen" class="nav-link">
+          Quick Gen
+        </Link>
       </div>
     </nav>
   );

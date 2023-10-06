@@ -8,6 +8,9 @@ import { RecoilRoot } from "recoil";
 import WebPage from "./pages/WebGenerationPage/WebPage";
 import AdPostPage from "./pages/AdPostPage/AdPostPage";
 import Navbar from "./components/Navbar/Navbar";
+import QuickGenPage from "./pages/QuickGeneratePage/QuickGenPage.jsx";
+import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 function App() {
   return (
     <RecoilRoot>
@@ -18,6 +21,9 @@ function App() {
         <Route path="/image" element={<ImagePage />} />
         <Route path="/web" element={<WebPage />} />
         <Route path="/adpost" element={<AdPostPage />} />
+        <Route path="/quickGen" element={<QuickGenPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </RecoilRoot>
   );
