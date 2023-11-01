@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { finalCopy } from "../../shared/recoil.js";
+import { Button, CircularProgress, Container, TextField } from "@mui/material";
 
 const QuickGenPage = () => {
   const [webPage, setWebPage] = useState("");
@@ -13,36 +14,37 @@ const QuickGenPage = () => {
   const [emailAddress, setEmailAddress] = useState(
     "mailto:zsruben03@gmail.com"
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const iframeRef = useRef();
 
   const handleClick = () => {
+    setIsLoading(true);
     const url =
       "http://compassproto-001-site1.ftempurl.com/api/Generate/generate-landing-page";
-    // Define the query parameters
-    const params = {
-      theIdea: "example idea",
-      priceAndCurrency: "example price",
-      contactLink: "example contact link"
+    const requestBody = {
+      theIdea: productName,
+      priceAndCurrency: 12,
+      email: "zsruben03@gmail.com",
     };
-    const requestBody = {};
     const headers = {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     };
 
     axios
       .post(url, requestBody, {
         headers,
-        params
       })
-      .then(response => {
+      .then((response) => {
         // Handle the successful response here
         console.log("Response:", response.data);
         setFinalHtml(response.data);
+        setIsLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle any errors that occur during the request
         console.error("Error:", error);
+        setIsLoading(false);
       });
   };
 
@@ -58,27 +60,34 @@ const QuickGenPage = () => {
   }, [finalHtml]);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", backgroundColor: "white", height: "100%" }}>
       {/* Input Fields */}
-      <div style={{ flex: 1 }}>
+      <Container style={{ flex: 1 }}>
         <h1>Quick Generate</h1>
-        <p>Product Name:</p>
-        <input
+        <TextField
+          label="Product Name"
           value={productName}
-          onChange={e => setProductName(e.target.value)}
+          onChange={(e) => setProductName(e.target.value)}
         />
-        <p>Price:</p>
-        <input value={price} onChange={e => setPrice(e.target.value)} />
+        <TextField
+          label="Price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
         <p>Email address:</p>
-        <input
+        <TextField
+          label="Email Address"
           value={emailAddress}
-          onChange={e => setEmailAddress(e.target.value)}
+          onChange={(e) => setEmailAddress(e.target.value)}
         />
-        <button onClick={handleClick}>Generate</button>
-        <button onClick={toggleDesignMode}>
+        <Button variant="contained" onClick={handleClick}>
+          Generate
+        </Button>
+        <Button variant="contained" onClick={toggleDesignMode}>
           Toggle design mode ({designModeOn ? "ON" : "OFF"})
-        </button>
-      </div>
+        </Button>
+        {isLoading ? <CircularProgress /> : <p></p>}
+      </Container>
 
       {/* Display HTML as a Webpage */}
       <div style={{ flex: 2 }}>

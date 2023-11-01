@@ -1,31 +1,40 @@
-import "./Navbar.scoped.css";
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
+import { Speed } from "@mui/icons-material";
 
 function Navbar() {
   return (
-    <nav className="nav">
-      <img src="/src/assets/images/image.png" className="nav-logo" alt="logo" />
-      <div className="nav-link-container">
-        <Link to="/" class="nav-link">
-          Home
-        </Link>
-        <Link to="/copy" class="nav-link">
-          Copy
-        </Link>
-        <Link to="/image" class="nav-link">
-          Image
-        </Link>
-        <Link to="/web" class="nav-link">
-          Web
-        </Link>
-        <Link to="/adpost" class="nav-link">
-          Ads
-        </Link>
-        <Link to="/quickGen" class="nav-link">
-          Quick Gen
-        </Link>
-      </div>
-    </nav>
+    <AppBar position="static">
+      <Toolbar className="nav-link-container">
+        <IconButton size="large" edge="start" color="inherit">
+          <Speed />
+        </IconButton>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Compass
+        </Typography>
+        <Stack direction="row" spacing={3}>
+          <Button href="/" color="inherit">
+            Home
+          </Button>
+          <Button href="/generate" color="inherit">
+            Generate
+          </Button>
+          <Button href="/quickGen" color="inherit">
+            Quick Gen
+          </Button>
+          <Button href="/pricing" color="inherit">
+            Pricing
+          </Button>
+        </Stack>
+      </Toolbar>
+    </AppBar>
   );
 }
 
