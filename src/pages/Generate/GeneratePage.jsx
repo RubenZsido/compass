@@ -63,7 +63,7 @@ const GeneratePage = () => {
       </Grid>
       <Grid item xs={8}>
         <Paper elevation={5} sx={{ height: "60vh", margin: "50px" }}>
-          <BasicForm />
+          {_renderStepContent(activeStep)}
           <Grid
             container
             spacing={5}
