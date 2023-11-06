@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Formik, Form, Field } from "formik";
 import {
   Box,
   Button,
@@ -21,12 +22,21 @@ const GeneratePage = () => {
   const steps = ["Basics", "Style", "Layout", "Hosting"];
   //const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
+  const [data, setData] = useState({});
   const currentValidation = validations[activeStep];
 
+  const handleNextStep = (newData) => {
+    setData((prev) => ({ ...prev, ...newData }));
+    setActiveStep((prev) => prev + 1);
+  };
+  const handlePrevStep = (newData) => {
+    setData((prev) => ({ ...prev, ...newData }));
+    setActiveStep((prev) => prev - 1);
+  };
   const _renderStepContent = (step) => {
     switch (step) {
       case 0:
-        return <BasicForm />;
+        return <BasicForm next={handleNextStep} data={data} />;
       case 1:
         return <StyleForm />;
       case 2:
@@ -61,35 +71,40 @@ const GeneratePage = () => {
           {steps[activeStep]}
         </Typography>
       </Grid>
+
       <Grid item xs={8}>
-        <Paper elevation={5} sx={{ height: "60vh", margin: "50px" }}>
-          {_renderStepContent(activeStep)}
-          <Grid
-            container
-            spacing={5}
-            justifyContent="space-evenly"
-            sx={{ width: "100%" }}
-          >
-            <Grid justifyContent="start" item xs={5}>
-              <Button
-                disabled={activeStep == 0}
-                onClick={() => setActiveStep((prev) => prev - 1)}
-                variant="contained"
+        <Formik>
+          <Form>
+            <Paper elevation={5} sx={{ height: "60vh", margin: "50px" }}>
+              {_renderStepContent(activeStep)}
+              <Grid
+                container
+                spacing={5}
+                justifyContent="space-evenly"
+                sx={{ width: "100%" }}
               >
-                Back
-              </Button>
-            </Grid>
-            <Grid justifyContent="end" item xs={5}>
-              <Button
-                variant="contained"
-                onClick={() => setActiveStep((prev) => prev + 1)}
-                disabled={activeStep == steps.length - 1}
-              >
-                Next
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
+                <Grid justifyContent="start" item xs={5}>
+                  <Button
+                    disabled={activeStep == 0}
+                    onClick={() => setActiveStep((prev) => prev - 1)}
+                    variant="contained"
+                  >
+                    Back
+                  </Button>
+                </Grid>
+                <Grid justifyContent="end" item xs={5}>
+                  <Button
+                    variant="contained"
+                    onClick={() => setActiveStep((prev) => prev + 1)}
+                    disabled={activeStep == steps.length - 1}
+                  >
+                    Next
+                  </Button>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Form>
+        </Formik>
       </Grid>
     </Grid>
   );

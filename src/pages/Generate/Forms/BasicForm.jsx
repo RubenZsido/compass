@@ -1,7 +1,9 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
 import React from "react";
+import { Formik, Form, Field } from "formik";
 
-const BasicForm = () => {
+const BasicForm = (props) => {
+  const { next, data } = props;
   return (
     <Grid container justifyContent="center">
       <Box
