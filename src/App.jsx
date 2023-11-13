@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import QuickGenPage from "./pages/QuickGeneratePage/QuickGenPage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
-import GeneratePage from "./pages/Generate/GeneratePage";
+import GeneratePage from "./pages/Generate/Forms/BasicForm.jsx";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";

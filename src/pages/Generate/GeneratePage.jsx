@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import {
-  Box,
   Button,
-  Container,
   Grid,
   Paper,
-  Stack,
   Step,
   StepLabel,
   Stepper,
@@ -17,6 +14,7 @@ import StyleForm from "./Forms/StyleForm";
 import LayoutForm from "./Forms/LayoutForm";
 import HostingForm from "./Forms/HostingForm";
 import { validations } from "./Validations/validations";
+import { useQuery } from "@tanstack/react-query";
 
 const GeneratePage = () => {
   const steps = ["Basics", "Style", "Layout", "Hosting"];
@@ -24,6 +22,11 @@ const GeneratePage = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [data, setData] = useState({});
   const currentValidation = validations[activeStep];
+
+  const [a, b] = useQuery({
+    queryKey: ["data"],
+    queryFn: () => "hello world",
+  });
 
   const handleNextStep = (newData) => {
     setData((prev) => ({ ...prev, ...newData }));
