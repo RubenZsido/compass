@@ -2,8 +2,7 @@ import { Box, Button, Grid, TextField } from "@mui/material";
 import React from "react";
 import { Formik, Form, Field } from "formik";
 
-const BasicForm = (props) => {
-  const { next, data } = props;
+const BasicForm = ({ next, data }) => {
   return (
     <Grid container justifyContent="center">
       <Box
@@ -23,5 +22,7 @@ const BasicForm = (props) => {
     </Grid>
   );
 };
+
+BasicForm.propTypes = {};
 
 export default BasicForm;

@@ -11,13 +11,13 @@ import Navbar from "./components/Navbar/Navbar";
 import QuickGenPage from "./pages/QuickGeneratePage/QuickGenPage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
-import GeneratePage from "./pages/Generate/Forms/BasicForm.jsx";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { orange } from "@mui/material/colors";
+import GeneratePage from "./pages/Generate/GeneratePage";
 function App() {
   const theme = createTheme({
     palette: {

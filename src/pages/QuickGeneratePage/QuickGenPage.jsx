@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { finalCopy } from "../../shared/recoil.js";
 import { Button, CircularProgress, Container, TextField } from "@mui/material";
+import { baseUrl } from "./../../shared/constants";
 
 const QuickGenPage = () => {
   const [webPage, setWebPage] = useState("");
@@ -20,8 +21,7 @@ const QuickGenPage = () => {
 
   const handleClick = () => {
     setIsLoading(true);
-    const url =
-      "http://compassproto-001-site1.ftempurl.com/api/Generate/generate-landing-page";
+    const url = baseUrl + "/Generate/generate-landing-page";
     const requestBody = {
       theIdea: productName,
       priceAndCurrency: 12,
